@@ -41,7 +41,7 @@ def profile_api(request, username):
 
 class ProfileAPI(APIView):
     """
-    A class based view for creating and fetching student records
+    A class based view for creating and fetching "User Profiles".
     """
 
     def get(self, request):
@@ -56,15 +56,15 @@ class ProfileAPI(APIView):
 
     def post(self, request):
         """
-        Create a student record
-        :param format: Format of the student records to return to
-        :param request: Request object for creating student
-        :return: Returns a student record
+        Create a Profile
+        :param format: Format of the Profile records to return to
+        :param request: Request object for creating Profile
+        :return: Returns a Profile record
         """
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid(raise_exception=ValueError):
             serializer.create(validated_data=request.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response({"SUCCESS: User is created successfully"}, status=status.HTTP_201_CREATED)
         return Response(serializer.error_messages, status=status.HTTP_400_BAD_REQUEST)
 
 
