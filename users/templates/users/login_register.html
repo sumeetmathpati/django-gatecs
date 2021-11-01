@@ -1,0 +1,82 @@
+{% extends 'three-cols.html' %}
+
+{% block left-content %}
+<div class="w3-card w3-round w3-white w3-hide-small">
+    <div class="w3-container">
+        <p>Interests</p>
+        <p>
+            <span class="w3-tag w3-small w3-theme-d5">News</span>
+            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
+            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
+            <span class="w3-tag w3-small w3-theme-d2">Games</span>
+            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
+            <span class="w3-tag w3-small w3-theme">Games</span>
+            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
+            <span class="w3-tag w3-small w3-theme-l2">Food</span>
+            <span class="w3-tag w3-small w3-theme-l3">Design</span>
+            <span class="w3-tag w3-small w3-theme-l4">Art</span>
+            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+        </p>
+    </div>
+</div>
+<br>
+{% endblock %}
+
+{% block middle-content %}
+<div class="w3-row-padding ">
+    <div class="w3-card w3-round">
+        
+        
+        <div class="w3-container w3-theme w3-round">
+            {% if form_type == 'login' %}
+            <h2>Login</h2>
+            {% else %}
+            <h2>Register</h2>
+            {% endif %}
+        </div>
+
+        
+        <form class="w3-container" action="" method="POST">
+            {% csrf_token %}
+
+            {% if form_type == 'login' %}
+            <p>
+                <label class="w3-text-theme"><b>Username</b></label>
+                <input class="w3-input w3-border" name="username" type="text">
+            </p>
+            <p>
+                <label class="w3-text-theme"><b>Password</b></label>
+                <input class="w3-input w3-border" name="password" type="password">
+            </p>
+            <p>
+                <button class="w3-btn w3-theme">Login</button>
+            </p>
+            {% else %}
+
+            {% for field in user_form %}
+            <p>
+                <label class="w3-text-theme"><b>{{ field.label }}</b></label>
+                {{ field }}
+            </p>
+            {% endfor %}
+
+            {% for field in profile_form %}
+            <p>
+                <label class="w3-text-theme"><b>{{ field.label }}</b></label>
+                {{ field }}
+            </p>
+            {% endfor %}
+            <p>
+                <button class="w3-btn w3-theme">Register</button>
+            </p>
+
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block right-content %}
+
+{% endblock %}
